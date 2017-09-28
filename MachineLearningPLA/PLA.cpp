@@ -37,6 +37,8 @@ double* PLA::GetWeightFromPLA(PLA_Data* data, int N, int M)
 		}
 	}
 	delete[] WN;
+	return WN;
+
 }
 
 double PLA::MatrixMultiply(double* a, double* b, int M)
@@ -61,4 +63,5 @@ void PLA::MatrixAdd(double* a, double* b, int M)
 int PLA::Sign(double value)
 {
 	return value <= 0 ? -1 : 1;
+
 }
