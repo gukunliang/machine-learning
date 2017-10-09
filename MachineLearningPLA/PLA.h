@@ -19,12 +19,12 @@ public:
 	~PLA();
 public:
 
-	//data为输入输出数据,N为数据总数，M为inputX维度，返回为权矢量
-	double* GetWeightFromPLA(PLA_Data* data, int N, int M);
+	//data为输入输出数据,WN为权矢量，N为数据总数，M为inputX维度，返回为迭代次数
+	int GetWeightFromPLA(PLA_Data* data, double* WN, int N, int M);
 
 private:
 	double MatrixMultiply(double* a, double* b, int M);
-	void MatrixAdd(double* a, double* b, int M);
+	void MatrixAdd(double* a, double* b, int y, int M);
 	int Sign(double value);
 
 private:
