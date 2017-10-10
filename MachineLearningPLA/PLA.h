@@ -21,6 +21,10 @@ public:
 
 	//data为输入输出数据,WN为权矢量，N为数据总数，M为inputX维度，返回为迭代次数
 	int GetWeightFromPLA(PLA_Data* data, double* WN, int N, int M);
+	//用pocketPLA训练WN
+	void PocketPLA(PLA_Data* data, double* WN, int N, int M, int itertorNum);
+	//通过训练得到的WN和测试数据计算错误率
+	double AverErrorOfPocketPLA(PLA_Data* data, double* WN, int N, int M);
 
 private:
 	double MatrixMultiply(double* a, double* b, int M);

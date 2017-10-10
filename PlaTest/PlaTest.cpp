@@ -23,7 +23,7 @@ void DeletePlaData(PLA_Data* plaData, int dataNum)
 	delete[] plaData;
 }
 
-int main()
+void CalculatePLA()
 {
 	vector<PLA_Data> dataList;
 	dataList.clear();
@@ -33,7 +33,7 @@ int main()
 	ifstream fin("F:/machineLearning/PLA/Lib/x86_Debug/hw1_15_train.dat");
 	if (!fin.is_open())
 	{
-		return -1;
+		return;
 	}
 	while (!fin.eof())
 	{
@@ -67,13 +67,18 @@ int main()
 		cout << "第" << i << "次迭代：" << IterationNum << '\n';
 		totalSum += IterationNum;
 	}
-	
+
 	int aver = totalSum / 2000;
 	cout << "平均迭代次数：" << aver << '\n';
 
 	DeletePlaData(plaData, dataNum);
-	delete [] WN;
+	delete[] WN;
 	fin.close();
+}
+
+int main()
+{
+	CalculatePLA();
 	while(1){}
     return 0;
 }
