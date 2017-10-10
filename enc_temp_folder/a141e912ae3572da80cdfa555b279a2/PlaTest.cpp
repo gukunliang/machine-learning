@@ -25,12 +25,29 @@ void DeletePlaData(PLA_Data* plaData, int dataNum)
 
 void CalculatePLA()
 {
-	vector<PLA_Data> dataList = GetDataFromFile("hw1_15_train.dat");;
+	vector<PLA_Data> dataList;
+	dataList.clear();
 	PLA *instance = PLA::GetInstance();
 	//char *fileName = "hw1_15_train.dat";
 	//string file = "hw1_15_train.dat";
-	
-    int dataNum = dataList.size();
+	ifstream fin("hw1_15_train.dat");
+	if (!fin.is_open())
+	{
+		return;
+	}
+	while (!fin.eof())
+	{
+		PLA_Data data;
+		data.inputX = new double[DIMENSION];
+		data.inputX[0] = 1.0;
+		for (int i = 1; i < DIMENSION; i++)
+		{
+			fin >> data.inputX[i];
+		}
+		fin >> data.outputY;
+		dataList.push_back(data);
+	}
+	size_t dataNum = dataList.size();
 	double* WN = new double[DIMENSION];
 	PLA_Data *plaData = new PLA_Data[dataNum];
 	int totalSum = 0;
@@ -91,7 +108,7 @@ void CalculatePocketPLA()
 	string trainFileName = "hw1_18_train.dat";
 	vector<PLA_Data> dataList = GetDataFromFile(trainFileName);
 	vector<PLA_Data> testDataList = GetDataFromFile("hw1_18_test.dat");
-    int dataNum = dataList.size();
+	size_t dataNum = dataList.size();
 	double* WN = new double[DIMENSION];
 	PLA_Data *plaData = new PLA_Data[dataNum];
 	PLA_Data *testPlaData = new PLA_Data[dataNum];
@@ -117,7 +134,7 @@ void CalculatePocketPLA()
 			index++;
 		}
 
-		instance->PocketPLA(plaData, WN, dataNum, DIMENSION, 100);
+		instance->PocketPLA(plaData, WN, dataNum, DIMENSION, 49);
 		double averError = instance->AverErrorOfPocketPLA(testPlaData, WN, dataNum, DIMENSION);
 		cout << "µÚ" << i << "´Îµü´úÎó²î£º" << averError << '\n';
 		totalSum += averError;

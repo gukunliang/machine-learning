@@ -139,7 +139,7 @@ void PLA::PocketPLA(PLA_Data* data, double* WN, int N, int M, int itertorNum)
 	{
 		WN[i] = pocketPLA[i];
 	}
-	delete [] pocketPLA;
+	delete[] pocketPLA;
 }
 
 double PLA::AverErrorOfPocketPLA(PLA_Data* data, double* WN, int N, int M)
